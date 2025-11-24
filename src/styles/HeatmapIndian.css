@@ -1,0 +1,30 @@
+/* Card */
+.heat-card{
+  background: var(--card-bg);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  padding: 18px;
+  backdrop-filter: var(--card-backdrop);
+  color: var(--text-primary);
+}
+
+
+.heat-header{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:10px }
+.heat-title{ margin:0; font-size:1.15rem; color:var(--text-primary) }
+.heat-controls select{ padding:8px 10px; border-radius:10px; background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.04); color:var(--text-primary) }
+
+.heat-svg{ width:100%; display:block }
+
+.heat-legend{ margin-top:10px }
+
+.heat-tooltip{ position:absolute; pointer-events:none; background:rgba(25, 24, 24, 0.98); border:1px solid rgba(20,50,36,0.06); padding:8px 10px; border-radius:8px; box-shadow:0 8px 22px rgba(20,50,38,0.08); font-size:13px; color:#153b2f; opacity:0; transform:translateY(6px); transition:opacity 160ms ease, transform 1200ms ease }
+.heat-tooltip.show{ opacity:0.7; transform:translateY(0) ; color: #fff;}
+
+/* cells */
+.cell{ stroke: none; }
+
+@media (max-width:720px){
+  .heat-card{ padding:12px; width:98% }
+  .heat-title{ font-size:16px }
+}

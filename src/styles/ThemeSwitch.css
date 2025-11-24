@@ -1,0 +1,19 @@
+.theme-switch{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:44px;
+  height:36px;
+  margin-left:20px;
+  border-radius:10px;
+  background:transparent;
+  color:var(--text-color,#F8FAF9);
+  border:1px solid rgba(255,255,255,0.06);
+  cursor:pointer;
+  transition:background 220ms ease, transform 160ms ease;
+}
+.theme-switch:hover{transform:translateY(-2px)}
+.theme-switch .icon{display:inline-flex}
+
+.theme-switch.light{background:rgba(255,255,255,0.06)}
+.theme-switch.dark{background:rgba(0,0,0,0.12)}

@@ -1,0 +1,109 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* Theme variables for consistent palette */
+  --bg-gradient: linear-gradient(120deg, #657ab2 0%, #4181c8 60%, #e8ecf3 100%);
+  --bg-gradient-dark: linear-gradient(120deg, #0f1724 0%, #1f3a6d 60%, #e8ecf3 100%);
+  --card-bg: rgba(33,45,70,0.52);
+  --card-backdrop: blur(18px) saturate(150%);
+  --card-radius: 16px;
+  --card-shadow: 0 6px 32px 0 rgba(44,65,110,0.13);
+  --text-primary: #eceffd;
+  --text-muted: #b8c6e4;
+  --accent-1: #7fbf7f;
+  --accent-2: #6c77b5;
+  --accent-3: #f6c85f;
+  --accent-4: #8ad1ff;
+  --accent-5: #b99bff;
+  --chart-1: #fc9e12;
+  --chart-2: #25af23;
+  --chart-3: #f68a57;
+  --chart-4: #6bb5e6;
+  --chart-5: #7c4ee6;
+  --chart-6: #ff9aa2;
+  --chart-7: #9be7ff;
+  --chart-8: #ffd6a5;
+  --chart-9: #cfc9ff;
+  --chart-10: #a0e7b3;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.95);
+  background-color: #121318;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+*, *::before, *::after { box-sizing: inherit; }
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  background-size: 200% 200%;
+  animation: bgShift 12s ease-in-out infinite;
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+@keyframes bgShift{
+  0%{ background-position:0% 50% }
+  50%{ background-position:100% 50% }
+  100%{ background-position:0% 50% }
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}

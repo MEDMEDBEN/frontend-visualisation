@@ -1,0 +1,31 @@
+.gauge-card{
+  background: var(--card-bg);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  padding: 18px;
+  margin: 5px auto;
+  width: 800px;
+  justify-content: center;
+  height: 250px;
+  align-items: center;
+}
+.gauge-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 36px rgba(2,8,20,0.48);
+}
+
+.gauge-header h3{ margin:0; font-size:1.05rem; color:var(--text-primary) }
+.gauge-sub{ margin:0; font-size:0.95rem; color:var(--text-muted) }
+.gauge-body{ display:flex; gap:12px; align-items:flex-start; flex-wrap:wrap }
+.gauge-controls{ flex:0 0 260px }
+.gauge-controls label{ display:block; margin-bottom:6px; color:var(--text-muted) }
+.gauge-controls select{ width:100%; padding:8px; border-radius:8px;border:1px solid rgba(255,255,255,0.04); background: rgba(255,255,255,0.03); color:var(--text-primary) }
+.gauge-area{ flex:1 1 420px; min-width:320px; position:relative }
+.gauge-svg{ width:80%; height:auto; display:block;left: -30px; }
+.gauge-tooltip{ position:fixed; pointer-events:none; background: rgba(6,12,20,0.9); border:1px solid rgba(255,255,255,0.04); padding:8px 10px; border-radius:8px; box-shadow:0 12px 30px rgba(2,8,18,0.56); font-size:13px; color:var(--text-primary) }
+.needle-line{ transition: transform 900ms cubic-bezier(.22,.9,.27,1) }
+.needle-hub{ fill:#333 }
+.gauge-percent{ font-size:18px; fill:var(--text-primary); font-weight:700 }
+
+@media (max-width:900px){ .gauge-body{ flex-direction:column } .gauge-controls{ border-bottom:1px solid #eef6ef; padding-bottom:10px } }

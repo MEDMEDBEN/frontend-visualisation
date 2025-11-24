@@ -1,0 +1,10 @@
+.waterfall-card{ background:var(--card-bg); border:1px solid rgba(255,255,255,0.04); border-radius:var(--card-radius); padding:12px; box-shadow:var(--card-shadow); backdrop-filter:var(--card-backdrop); color:var(--text-primary); }
+.waterfall-header h4{ margin:0 0 8px; font-size:1rem }
+.waterfall-svg{ display:block; width:100%; height:260px }
+.waterfall-legend{ margin-top:8px; display:flex; gap:12px; flex-wrap:wrap }
+.leg-item{ display:inline-flex; gap:8px; align-items:center }
+.leg-item .sw{ width:14px; height:12px; border-radius:3px; display:inline-block }
+.leg-item .lbl{ color:var(--text-muted); font-size:13px }
+.waterfall-note{ margin-top:8px; color:var(--text-muted); font-size:0.9rem }
+.waterfall-tooltip{ position:absolute; pointer-events:none; background:var(--card-bg); border:1px solid rgba(255,255,255,0.04); padding:8px 10px; border-radius:8px; box-shadow:var(--card-shadow); color:var(--text-primary); max-width:220px; font-size:0.95rem; display:none }
+@media (max-width:600px){ .waterfall-svg{ height:220px } .waterfall-header h4{ font-size:0.95rem } }

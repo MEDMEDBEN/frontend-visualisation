@@ -1,0 +1,27 @@
+.page{font-family:var(--brand-font); color:var(--text-color); background:transparent}
+.page h2{font-size:28px; margin-bottom:8px}
+.page p{font-size:16px; color:var(--muted-color)}
+
+.page-solution{ max-width:1100px; margin:18px auto; padding:12px }
+.page-solution .lead{ color:var(--text-muted); margin-bottom:12px }
+
+/* grid of waste cards */
+.solutions-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:14px; align-items:start }
+@media (max-width:900px){ .solutions-grid{ grid-template-columns:1fr } }
+
+.waste-card{ padding:12px; background:var(--card-bg); border-radius:var(--card-radius); box-shadow:var(--card-shadow); border:1px solid rgba(255,255,255,0.04); backdrop-filter:var(--card-backdrop); color:var(--text-primary) }
+.waste-card h3{ margin-top:0 }
+.waste-card ul{ margin:8px 0 0 0; padding:0; list-style:none }
+.waste-card li{ margin-bottom:10px; font-size:0.96rem }
+.waste-card .meta{ font-size:0.85rem; color:var(--text-muted); margin-top:4px }
+
+/* synthesis */
+.synthesis-card{ margin-top:18px; padding:14px }
+.synthesis-card .priorities{ list-style:decimal; margin-left:1.1rem }
+.synthesis-card .examples{ margin-top:12px; color:var(--text-primary) }
+.synthesis-card .customize-note{ margin-top:12px; font-size:0.9rem; color:var(--text-muted); background:rgba(255,255,255,0.02); padding:8px; border-radius:8px }
+
+/* dense readable style */
+.page-solution .card{ line-height:1.35 }
+
+@media (max-width:600px){ .waste-card li{ font-size:0.94rem } }

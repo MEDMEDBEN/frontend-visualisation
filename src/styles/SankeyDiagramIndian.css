@@ -1,0 +1,54 @@
+.sankey-card{
+  background: var(--card-bg);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  padding: 18px;
+  color: var(--text-primary);
+  backdrop-filter: var(--card-backdrop);
+  width:100%;
+  max-width:1020px;
+  margin:0 auto;
+  left: -70px;
+  position: relative;
+}
+.sankey-header h3{ margin:0; font-size:1.05rem }
+.sankey-sub{ margin:0; font-size:0.95rem; color:var(--text-muted) }
+.sankey-controls{ display:flex; gap:12px; align-items:center; margin-top:10px }
+.sankey-controls label{ color:var(--text-muted) }
+.sankey-controls select{
+  /* Apply same dark glassy dropdown style as PieChart (dark blue + white text)
+     This makes both Sankey selects visually identical to the Pie chart dropdown. */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 8px 12px 8px 12px;
+  padding-right: 40px; /* room for native arrow */
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(6,24,60,0.92), rgba(10,28,66,0.86)); /* dark-blue */
+  border: 1px solid rgba(255,255,255,0.06);
+  font-size: 0.95rem;
+  color: #ffffff;
+  cursor: pointer;
+  transition: 0.12s ease;
+}
+
+/* Option styling where supported (some browsers ignore these rules) */
+.sankey-controls select option{
+  background: rgba(6,24,60,0.96);
+  color: #ffffff;
+}
+
+.sankey-controls select option:hover,
+.sankey-controls select option:checked{
+  background: rgba(8,32,80,1);
+  color: #ffffff;
+}
+.sankey-area{ margin-top:12px; position:relative; min-height:360px }
+.sankey-svg{ width:100%; height:340px; display:block }
+.sankey-tooltip{ position:absolute; pointer-events:none; background: rgba(6,12,20,0.9); border:1px solid rgba(255,255,255,0.04); padding:8px 10px; border-radius:8px; box-shadow:0 12px 30px rgba(2,8,18,0.56); font-size:13px; color:var(--text-primary); transition:opacity .12s ease; opacity:0 }
+.sankey-tooltip.show{ opacity:1 }
+.sankey-legend{ margin-top:8px; display:flex; gap:12px; flex-wrap:wrap }
+.sankey-legend text{ font-size:12px }
+
+@media (max-width:900px){ .sankey-controls{ flex-direction:column; align-items:flex-start } }

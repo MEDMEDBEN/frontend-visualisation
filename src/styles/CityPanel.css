@@ -1,0 +1,68 @@
+.city-panel{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 12px 0 6px 0;
+  backdrop-filter: blur(10px) saturate(60%);
+  
+  
+}
+.glassy-select{
+  /* Reusable glassy select helper: dark-blue background, white text, arrow room */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 8px 12px 8px 16px;
+  padding-right: 40px; /* room for arrow */
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(6,24,60,0.92), rgba(10,28,66,0.86));
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 6px 18px rgba(2,8,20,0.28);
+  color: #ffffff;
+  font-weight: 500;
+}
+.city-panel-inner{
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 2px 10px rgba(10,20,20,0.25);
+  border: 1px solid rgba(255,255,255,0.06);
+  color: #0f2f1f;
+  max-width: 520px;
+  width: 100%;
+  height: 200px;
+  }
+.city-select-label{ font-size:12px; color:#e6f3ec }
+.city-select-wrapper{ position:relative; flex:1; display:flex; align-items:center }
+.city-select{
+  /* Use the glassy select treatment to match Pie/Sankey dropdowns */
+  width:100%;
+  border: none;
+  font-size: 1.05rem;
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.13);
+  transition: box-shadow 180ms ease, transform 120ms ease;
+  /* apply reusable helper */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 8px 48px 8px 16px;
+  padding-right: 40px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(6,24,60,0.92), rgba(10,28,66,0.86));
+  color: #ffffff;
+  font-weight: 500;
+}
+.city-select:focus{ outline: none; box-shadow: 0 10px 40px rgba(3,10,24,0.28); transform: translateY(-2px); }
+.city-select:hover{ background: linear-gradient(180deg, rgba(8,30,72,0.94), rgba(12,32,74,0.88)); }
+.city-select option{ color: #ffffff; background: rgba(6,24,60,0.96); }
+.city-select-wrapper .select-arrow{ position:absolute; right:12px; top:50%; transform:translateY(-50%); pointer-events:none; display:flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:8px; transition: transform 180ms ease, opacity 160ms ease; }
+.city-select-wrapper:focus-within .select-arrow{ transform: translateY(-52%) scale(1.04); }
+.city-select-wrapper .select-arrow svg{ display:block }
+
+.city-info{ padding-top:6px }
+.city-name{ font-size:18px; font-weight:700; color:#f2fff9; margin-bottom:6px }
+.city-meta{ display:flex; flex-direction:column; gap:6px }
+.meta-row{ display:flex; align-items:center; gap:8px; color:#dff3e6; font-size:13px }
+.meta-emoji{ width:20px }
+
+.city-panel-inner{ transition: transform 220ms ease, box-shadow 220ms ease }
+.city-panel-inner:focus-within{ transform: translateY(-4px); box-shadow: 0 10px 30px rgba(6,18,12,0.35) }

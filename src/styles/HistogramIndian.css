@@ -1,0 +1,36 @@
+/* Card style for histogram */
+.hist-card{
+background: var(--card-bg);
+backdrop-filter: var(--card-backdrop);
+border-radius: var(--card-radius);
+box-shadow: var(--card-shadow);
+border: 1px solid rgba(255,255,255,0.04);
+padding: 14px;
+color: var(--text-primary);
+}
+
+.hist-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between; 
+  gap:12px;
+  margin-bottom:12px;
+}
+.hist-header h2{ margin:0; font-size:1.2rem; color: var(--text-primary); font-family: 'Inter', sans-serif }
+.hist-controls{ display:flex; align-items:center; gap:8px }
+.hist-controls select{ padding:8px 10px; border-radius:10px; border:1px solid rgba(255,255,255,0.04); background: rgba(255,255,255,0.03); color: var(--text-primary) }
+
+.hist-svg{ width:100%; display:block }
+
+.axis path, .axis line{ stroke: rgba(255,255,255,0.06) }
+.y-axis text, .x-axis text{ fill: var(--text-muted) }
+
+/* legend area under chart */
+.legend { font-family: var(--brand-font); }
+.legend .legend-item text { fill: var(--text-primary) }
+
+/* small responsive adjustments */
+@media (max-width:720px){
+  .hist-card{ padding:16px; width:96% }
+  .legend .legend-item { transform: none }
+}

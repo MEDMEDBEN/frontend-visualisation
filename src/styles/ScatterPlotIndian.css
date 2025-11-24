@@ -1,0 +1,25 @@
+.scatter-card{
+  width:100%;
+  max-width:1200px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border:1px solid rgba(255,255,255,0.04);
+  border-radius:14px;
+  box-shadow: 0 10px 36px rgba(2,8,20,0.24);
+  padding:12px;
+  overflow:hidden;
+}
+.scatter-header{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:8px }
+.scatter-title{ margin:0; font-size:18px; color:var(--text-primary); font-family:'Inter',sans-serif }
+.scatter-controls select{ padding:6px 8px; border-radius:8px; border:1px solid rgba(255,255,255,0.04); background:rgba(255,255,255,0.02); color:var(--text-primary) }
+
+.scatter-svg{ width:100%; display:block; height:auto; min-height:260px }
+
+.scatter-legend{ display:flex; gap:16px; align-items:center; margin-top:10px }
+.legend-colors{ color:var(--text-muted) }
+.legend-sizes{ color:var(--text-muted) }
+
+.scatter-tooltip{ position:absolute; pointer-events:none; background: rgba(6,12,20,0.9); color:#fff; border:1px solid rgba(255,255,255,0.04); padding:10px 12px; border-radius:10px; box-shadow:0 12px 30px rgba(2,8,18,0.56); font-size:13px; opacity:0; transform:translateY(6px); transition:opacity 140ms ease, transform 140ms ease; z-index:40; max-width:220px }
+.scatter-tooltip .tip-title{ font-weight:600; margin-bottom:6px }
+.scatter-tooltip.show{ opacity:1; transform:translateY(0) }
+
+@media (max-width:520px){ .scatter-card{ padding:10px; width:98% } .scatter-title{ font-size:16px } .scatter-svg{ min-height:180px } }

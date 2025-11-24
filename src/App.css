@@ -1,0 +1,108 @@
+/* App-level layout and demo helpers kept here. This file now contains
+   the consolidated global app styles, theme variables and layout rules.
+*/
+
+/* Demo / utility styles (optional) */
+#root {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo { animation: logo-spin infinite 20s linear; }
+}
+
+.card { padding: 2em; }
+.read-the-docs { color: #888; }
+
+/* App-level layout and full-viewport rules (no inline styles in JSX) */
+
+:root{
+  --brand-font: Inter, Lato, Roboto, system-ui, -apple-system, sans-serif;
+  --bg-gradient: linear-gradient(to bottom, rgb(230, 246, 240), rgb(251, 241, 203));
+  --page-bg: linear-gradient(to bottom, #F7FAF8, #E7F0EC);
+  --nav-bg: #317159;
+  --text-color: #405366;
+  --muted-color: #6b8f78;
+  --card-bg: rgba(255,255,255,0.8);
+  --transition-fast: 180ms ease;
+  --app-navbar-height: 64px;
+}
+
+/* Dark theme overrides */
+.theme-dark{
+  --bg-gradient:linear-gradient(
+  #001b31 0%,
+  #003b2c 50%,
+  #25391f 100%
+);
+
+  --page-bg: #163826;
+  --nav-bg: #28694B;
+  --text-color: #F8FAF9;
+  --muted-color: #9fb3a2;
+  --card-bg: rgba(255,255,255,0.04);
+}
+
+.app-root{
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  background: var(--bg-gradient);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background var(--transition-fast);
+  font-family: var(--brand-font);
+  color: var(--text-color);
+}
+
+.app-main {
+  padding: 28px;
+  width: 100%;
+  min-height: calc(100vh - var(--app-navbar-height));
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* au lieu de center */
+}
+
+
+/* Ensure nav height is respected and there is no extra lateral spacing */
+.app-navbar { width: 100%; }
+
+@media (max-width:720px){
+  :root { --app-navbar-height: 56px; }
+  .app-main{ padding: 18px }
+}
+
+/* Utility: ensure elements don't cause horizontal scroll */
+* { box-sizing: inherit; }

@@ -1,0 +1,37 @@
+.radar-card{
+  background: var(--card-bg);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  padding: 18px;
+  max-width: 1050px;
+  color: var(--text-primary);
+  backdrop-filter: var(--card-backdrop);
+}
+
+
+.radar-header h2{ margin: 0 0 6px 0; font-size: 1.15rem; color: var(--text-primary) }
+.radar-sub{ margin: 0; color: var(--text-muted); font-size: 0.95rem }
+.radar-body{ display:flex; gap:14px; align-items:flex-start; flex-wrap:wrap }
+.radar-controls{ flex: 0 0 260px; max-height:420px; overflow:auto; border-right:1px solid #eef6ef; padding-right:12px }
+.radar-controls-inner{ display:flex; flex-direction:column; gap:6px; padding:6px }
+.city-checkbox{ display:flex; align-items:center; gap:8px; font-size:14px; color:var(--text-muted) }
+.city-checkbox input{ transform:scale(1.04) }
+.city-checkbox.disabled{ opacity:0.45 }
+.radar-area{ flex:1 1 520px; position:relative; min-width:320px; min-height:420px }
+.radar-svg{ width:100%; height:auto; display:block }
+.grid-circle{ fill:none; stroke:#e6f0ea; stroke-width:1 }
+.axis-line{ stroke:#dbeee0; stroke-width:1 }
+.axis-label{ font-size:12px; fill:#ffffff }
+.vertex{ cursor:pointer }
+.radar-tooltip{ position:fixed; pointer-events:none; background: rgba(6,12,20,0.9); border:1px solid rgba(255,255,255,0.04); padding:8px 10px; border-radius:8px; box-shadow:0 12px 30px rgba(2,8,18,0.56); font-size:13px; color:var(--text-primary) }
+.radar-legend{ position:absolute; right:8px; top:-50px; display:flex; gap:8px; flex-direction:column }
+.legend-item{ display:flex; gap:8px; align-items:center; background: rgba(255, 255, 255, 0.02); padding:6px 8px; border-radius:6px; border:1px solid rgba(255,255,255,0.02) }
+.legend-swatch{ width:12px; height:12px; border-radius:3px; display:inline-block }
+.legend-label{ font-size:13px; color:var(--text-muted) }
+.radar-empty{ fill:#7aa285; font-size:14px }
+
+@media (max-width:900px){
+  .radar-body{ flex-direction:column }
+  .radar-controls{ border-right:none; border-bottom:1px solid #eef6ef; padding-bottom:10px }
+}

@@ -1,0 +1,141 @@
+/* ===== CARD PRINCIPALE ===== */
+.pie-card {
+  background: var(--card-bg);
+  backdrop-filter: var(--card-backdrop);
+  border-radius: var(--card-radius);
+  padding: 18px;
+  margin: 15px 0;
+  box-shadow: var(--card-shadow);
+  width: 100%;
+  position: relative;
+  color: var(--text-primary);
+}
+
+/* ===== TITRE ===== */
+.pie-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 0 0 12px;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+}
+
+/* ===== CONTROLS ===== */
+.pie-controls {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 6px 0 12px;
+}
+
+.pie-controls label {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.pie-controls select {
+  /* Make the select use a dark-blue background with white text when a year is selected.
+     We also style options where supported — note some browsers limit option styling. */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 8px 12px 8px 12px;
+  padding-right: 40px; /* room for native arrow */
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(6,24,60,0.92), rgba(10,28,66,0.86)); /* dark-blue */
+  border: 1px solid rgba(255,255,255,0.06);
+  font-size: 0.95rem;
+  color: #ffffff;
+  cursor: pointer;
+  transition: 0.12s ease;
+}
+
+.pie-controls select:hover {
+  border-color: rgba(255,255,255,0.08);
+  background: linear-gradient(180deg, rgba(8,30,72,0.94), rgba(12,32,74,0.88));
+}
+
+/* Attempt to style option appearance (may be ignored by some browsers) */
+.pie-controls select option{
+  background: rgba(6,24,60,0.96);
+  color: #ffffff;
+}
+
+/* When an option is hovered/selected in supporting browsers */
+.pie-controls select option:hover,
+.pie-controls select option:checked{
+  background: rgba(8,32,80,1);
+  color: #ffffff;
+}
+
+/* ===== SVG ===== */
+.pie-svg {
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+/* ===== POURCENTAGES SUR LE GRAPH ===== */
+.pie-svg text {
+  fill: var(--text-primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+/* ===== LÉGENDE ===== */
+.pie-legend {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+}
+
+.leg-item {
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.leg-item .sw {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  border-radius: 3px;
+  margin-right: 6px;
+}
+
+/* ===== TOOLTIP ===== */
+.pie-tooltip {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  pointer-events: none;
+  transition: opacity 2s ease;
+  opacity: 0;
+  z-index: 20;
+}
+
+.pie-tooltip.show {
+  opacity: 1;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+  .pie-title {
+    font-size: 1.1rem;
+  }
+  .pie-controls {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

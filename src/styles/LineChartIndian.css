@@ -1,0 +1,70 @@
+/* LineChartIndian CSS — authoritative single-file styling
+   This file controls ALL visual aspects of the LineChartIndian component:
+   - card dimensions, padding, margin, shadows
+   - svg sizing and responsive behavior
+   - axes, labels, gridlines, legend, tooltip and point styling
+   Do not add styling for this component elsewhere; the component relies on
+   these class names to render correctly.
+*/
+  .linechart-card{
+  background: var(--card-bg);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  padding: 12px;
+  backdrop-filter: var(--card-backdrop);
+  color: var(--text-primary);
+  
+  /* ensure tooltip absolute positioning is relative to this card */
+  position: relative;
+  }
+
+.linechart-header{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:8px }
+.linechart-title{ margin:0; font-size:1.15rem; color:var(--text-primary); font-family: 'Inter', sans-serif }
+.linechart-controls select{ padding:8px 10px; border-radius:10px; border:1px solid rgba(255,255,255,0.04); background: rgba(255,255,255,0.03); color:var(--text-primary) }
+
+/* The SVG should fill the card by default; responsive rules may adjust width/height */
+.linechart-svg{ width:100%; height:100%; display:block }
+
+.linechart-legendArea{ display:flex; gap:12px; align-items:center; margin-top:10px }
+.linechart-legendItem{ display:flex; gap:8px; align-items:center; color:var(--text-muted); font-size:0.95rem }
+.linechart-legendSwatch{ width:14px; height:14px; border-radius:4px; display:inline-block }
+
+/* Tooltip styling — hidden by default; JS toggles display and .show class */
+.linechart-tooltip{
+  position:absolute;
+  pointer-events:none;
+  background: rgba(6,12,20,0.9);
+  border:1px solid rgba(255,255,255,0.04);
+  padding:10px 12px;
+  border-radius:10px;
+  box-shadow:0 10px 30px rgba(2,8,18,0.6);
+  font-size:13px;
+  color:var(--text-primary);
+  opacity:0;
+  transform:translateY(6px);
+  transition:opacity 180ms ease, transform 180ms ease;
+  display:none;
+}
+.linechart-tooltip.show{ opacity:1; transform:translateY(0); display:block }
+
+/* Axis and grid styling (applies to SVG groups created by D3) */
+.linechart-card .axis path,
+.linechart-card .axis line{ stroke: rgba(255,255,255,0.06) }
+.linechart-card .x-axis text,
+.linechart-card .y-axis text{ fill: var(--text-muted); font-size:0.9rem }
+.linechart-card .grid line{ stroke: rgba(255,255,255,0.03) }
+
+/* Lines and points styling (override inline attributes when appropriate) */
+.linechart-card .line{ stroke-width:1.6; stroke-linecap:round; }
+.linechart-card .line.gen{ stroke: var(--chart-2) }
+.linechart-card .line.rec{ stroke: var(--chart-1) }
+.linechart-card .point circle{ transform-origin:center center; transform:scale(0.9); }
+
+/* Responsive: reduce paddings and font sizes on small screens */
+@media (max-width:720px){
+  .linechart-card{ padding:12px; width:98% }
+  .linechart-title{ font-size:16px }
+  .linechart-svg{ width:100%; height:auto }
+  .linechart-card .x-axis text, .linechart-card .y-axis text{ font-size:11px }
+}

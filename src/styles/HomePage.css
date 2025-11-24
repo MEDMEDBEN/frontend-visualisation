@@ -1,0 +1,37 @@
+.home-page{
+  min-height:calc(100vh - 64px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:48px 20px;
+  color:var(--text-color,#405366);
+  font-family:var(--brand-font);
+  width:90vw;
+  box-sizing:border-box;
+}
+.home-container{
+  width:100%;
+  text-align:center;
+}
+.home-title{
+  font-size:32px;
+  margin:6px 0 12px;
+  color:var(--text-color);
+}
+.home-sub{
+  font-size:18px;
+  color:var(--muted-color,#6b8f78);
+  margin-bottom:24px;
+}
+.home-card{
+  background:var(--card-bg,rgba(255,255,255,0.8));
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 8px 30px rgba(16,24,16,0.08);
+  color:var(--text-color);
+}
+
+@media (max-width:520px){
+  .home-title{font-size:28px}
+  .home-sub{font-size:16px}
+}

@@ -1,0 +1,19 @@
+.floating-note{ position:fixed; right:18px; bottom:18px; z-index:1200; font-family:inherit ; }
+.fn-bubble{ width:56px; height:56px; border-radius:50%; background:linear-gradient(180deg, #6c5ce7, #5b4ad6); color:#fff; border:none; box-shadow:0 8px 28px rgba(44,65,110,0.18); display:flex; align-items:center; justify-content:center; cursor:pointer }
+.fn-bubble svg{ filter:drop-shadow(0 4px 10px rgba(0,0,0,0.12)); }
+
+.fn-card{ position:relative; width:100%; max-width:720px; height:400px; background:rgba(0, 0, 0, 0.72); backdrop-filter:blur(6px) saturate(120%); border-radius:14px; box-shadow:0 12px 40px rgba(18,30,50,0.12); padding:12px; display:none; flex-direction:column }
+.floating-note.open .fn-card{ display:flex ;color: rgb(255, 255, 255); }
+
+.fn-header{ display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:8px }
+.fn-header strong{ font-size:1rem }
+.fn-close{ background:transparent; border:none; font-size:1.05rem; cursor:pointer }
+
+.fn-textarea{ width:100%; height:calc(100% - 72px); resize:vertical; border-radius:10px; border:1px solid rgba(0,0,0,0.08); padding:10px; font-size:0.95rem; background:rgba(18, 18, 18, 0.6); outline:none }
+.fn-textarea:focus{ box-shadow:0 6px 20px rgba(44,65,110,0.08) }
+.fn-footer{ margin-top:8px; text-align:right; font-size:0.8rem; color:rgba(0,0,0,0.6) }
+
+@media (max-width:800px){
+  .fn-card{ max-width:92vw; height:260px }
+  .fn-bubble{ width:48px; height:48px }
+}

@@ -1,0 +1,44 @@
+.page{font-family:var(--brand-font); color:var(--text-color); background:transparent}
+.page h2{font-size:28px; margin-bottom:8px}
+.page p{font-size:16px; color:var(--muted-color)}
+
+/* Make the chats lead paragraph white for better contrast */
+.page-chats .chats-lead{ color: #ffffff }
+
+/* Layout */
+.chats-grid{ display:flex; gap:16px; align-items:flex-start }
+@media (max-width:900px){ .chats-grid{ flex-direction:column } }
+
+/* Card base: dark glassy */
+.chat-card{ background:linear-gradient(135deg, rgba(10,14,22,0.6), rgba(24,30,40,0.5)); border-radius:14px; padding:14px; color:var(--text-primary); box-shadow:0 12px 36px rgba(2,6,23,0.6); border:1px solid rgba(255,255,255,0.04); backdrop-filter:blur(8px) saturate(120%); }
+
+/* Comments card specifics */
+.comments-card{ flex:1; min-width:280px; max-width:480px }
+.comments-list{ display:flex; flex-direction:column; gap:12px; max-height:640px; overflow:auto; padding-right:6px }
+.comment-bubble{ background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:10px 12px; border-radius:12px; box-shadow:0 6px 18px rgba(2,6,23,0.5); }
+.comment-meta{ font-size:0.85rem; color:var(--text-muted); margin-bottom:6px }
+.comment-text{ font-size:0.96rem; color:var(--text-primary) }
+
+/* comment form */
+.comment-form{ margin-top:20px; display:flex; flex-direction:column; gap:8px }
+.comment-name{ padding:8px 10px; border-radius:8px; border:1px solid rgba(255,255,255,0.04); background:rgba(255,255,255,0.02); color:var(--text-primary) }
+.comment-input{ padding:8px 10px; border-radius:8px; border:1px solid rgba(255,255,255,0.04); background:rgba(255,255,255,0.02); color:var(--text-primary); resize:vertical }
+.comment-submit{ padding:8px 12px; border-radius:8px; background:linear-gradient(90deg,#5b8def,#2b6cf6); color:#fff; border:none; cursor:pointer }
+
+/* Chatbot card specifics */
+.bot-card{ flex:1; min-width:320px; max-width:720px; display:flex; flex-direction:column }
+.preset-row{ display:flex; gap:8px; margin-bottom:8px; flex-wrap:wrap }
+.preset-btn{ background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.04); padding:6px 10px; border-radius:999px; cursor:pointer; font-size:0.9rem; color:var(--text-primary) }
+
+.chat-window{ display:flex; flex-direction:column; height:640px }
+.chat-messages{ flex:1; overflow:auto; padding:8px; display:flex; flex-direction:column; gap:10px }
+.msg{ max-width:78%; padding:10px 12px; border-radius:14px; display:inline-block }
+.msg.bot{ align-self:flex-start; background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02)); color:var(--text-primary) }
+.msg.user{ align-self:flex-end; background:linear-gradient(180deg, rgba(96,165,250,0.16), rgba(59,130,246,0.18)); color:#fff }
+.msg-text{ white-space:pre-wrap }
+
+.chat-input-row{ display:flex; gap:8px; margin-top:8px }
+.chat-input{ flex:1; padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.02); color:var(--text-primary) }
+.send-btn{ padding:9px 14px; border-radius:10px; background:linear-gradient(90deg,#5b8def,#2b6cf6); color:#fff; border:none; cursor:pointer }
+
+@media (max-width:900px){ .chat-window{ height:420px } .comments-list, .chat-messages{ max-height:420px } }

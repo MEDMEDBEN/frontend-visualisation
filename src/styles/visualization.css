@@ -1,0 +1,151 @@
+/* === WRAPPER GLOBAL === */
+.visualization-wrapper {
+  width: 103%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; 
+  border-radius: 18px;
+  padding: 10px 30px 10px 10px;
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.18);
+  margin-top: -10px;
+  backdrop-filter: blur(12px) saturate(200%);
+
+}
+
+
+/* === LIGNES === */
+.row {
+  display: flex;
+  width: 100%;
+  gap: 9px;
+}
+
+/* Ligne plein écran */
+.full-row {
+  justify-content: center;
+}
+
+.full-row > * {
+  width: 100%;
+  max-width: 1200px;
+  min-height: 320px;
+}
+
+/* Ligne 2 colonnes (50/50) */
+.double-row .half1 {
+  width: 50%;
+  max-height: 350px;
+  max-width: 50%;
+  text-align: center;
+  
+}
+/* Ligne 2 colonnes (50/50) */
+.double-row .half2 {
+  width: 100%;
+  min-height: 700px;
+  max-width: 50%;
+  justify-content: flex-end;
+}
+
+/* Ligne complexe (pie charts à gauche + scatter) */
+/* Ligne complexe (pie charts à gauche + scatter) */
+.quarter1 {
+  width: 50%;
+  min-height: 180px; /* taille minimale pour le pie chart */
+  /* === WRAPPER GLOBAL === */
+  .visualization-wrapper {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 18px;
+    padding: 14px 18px;
+    box-shadow: 0 6px 32px rgba(3,12,25,0.16);
+    margin: 0;
+    background: linear-gradient(180deg, rgba(6,12,20,0.08), rgba(6,12,20,0.04));
+    backdrop-filter: blur(10px) saturate(160%);
+  }}
+
+  /* row helper (not used for new viz-card layout but kept) */
+  .row { display:flex; width:100%; gap:10px }
+
+  /* full-width block wrapper */
+  .viz-block { width: 100%; display:flex; justify-content:center }
+
+  /* reusable glass card */
+  .viz-card { width: 100%; max-width:1200px; border-radius:14px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.04); box-shadow: 0 10px 36px rgba(2,8,20,0.24); padding:12px; overflow:hidden }
+  .viz-card--full { min-height: 340px }
+  .viz-card--half { width:49%; min-height: 340px }
+  .viz-card--large { width:100%; min-height:420px }
+  .viz-card-header{ margin-bottom:8px }
+  .viz-card-header h3, .viz-card-header h4 { margin:0; color:var(--text-primary); font-family: 'Inter', sans-serif }
+  .viz-card-body{ padding:10px 6px }
+
+  /* two-column row */
+  .viz-card-row{ display:flex; gap:12px; width:100%; align-items:stretch }
+
+  /* big grid for pie + scatter */
+  .viz-card-grid{ display:grid; grid-template-columns: 360px 1fr; gap:14px; align-items:start }
+  .viz-left-stack{ display:flex; flex-direction:column }
+  .viz-right-main{ display:flex; flex-direction:column; gap:12px }
+  .viz-card-inner{ background: transparent; border-radius:10px; padding:6px }
+  .stack{ display:flex; flex-direction:column; gap:12px }
+  .stack-item{ min-height:160px }
+  .gauge-centered{ display:flex; align-items:center; justify-content:center; min-height:100px }
+  /* Compact viz-card variant used for mini tables to match other viz-cards */
+  /* Compact viz-card variant used for mini tables to match other viz-cards */
+  .viz-card--mini{
+    /* Use the exact same visual treatment as .viz-card to ensure perfect consistency */
+    width:100%;
+    border-radius:14px;
+    /* match the darker graph-card gradient used elsewhere in the visualisation */
+    background: linear-gradient(180deg, rgba(10,14,22,0.6), rgba(24,30,40,0.5));
+    border:1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 10px 36px rgba(2,8,20,0.24);
+    padding:10px;
+    backdrop-filter: blur(8px) saturate(120%);
+  }
+
+  /* Table inside the mini card: compact, dark and readable */
+  .viz-card--mini .mini-summary-table{ width:100%; border-collapse:collapse; font-size:0.95rem; table-layout:fixed }
+  .viz-card--mini .mini-summary-table thead th{
+    text-align:left; font-weight:600; padding:8px 10px; color:var(--text-primary);
+    background: rgba(255,255,255,0.02);
+  }
+  .viz-card--mini .mini-summary-table tbody tr{ background: transparent }
+  .viz-card--mini .mini-summary-table tbody tr:nth-child(even){ background: rgba(255,255,255,0.01) }
+  .viz-card--mini .mini-summary-table td{ padding:8px 10px; border-top:1px solid rgba(255,255,255,0.03); color:var(--text-primary); font-size:0.95rem; overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
+  .viz-card--mini .mini-summary-table td.type-col{ width:28% }
+  .viz-card--mini .mini-summary-table td.qty-col{ width:14%; text-align:right }
+  .viz-card--mini .mini-summary-table td.recy-col{ width:12%; text-align:right }
+  .viz-card--mini .mini-summary-table td.method-col{ width:22% }
+  .viz-card--mini .mini-summary-table td.score-col{ width:8%; text-align:center }
+  .viz-card--mini .mini-summary-table td.camp-col{ width:8%; text-align:center }
+  .viz-card--mini .mini-note{ margin-top:8px; font-size:0.85rem; color:var(--text-muted) }
+
+  /* Make the mini card header title white for contrast as requested */
+  .viz-card--mini .viz-card-header h5{ color: #ffffff }
+
+  /* make table horizontally scrollable on very small screens */
+  .viz-card--mini .mini-summary-body{ overflow:auto }
+
+  /* sankey full */
+  .viz-card--full .sankey { min-height:260px }
+
+  /* appearance animation */
+  .viz-appear { animation: fadeUp .42s ease both }
+  @keyframes fadeUp { from { opacity:0; transform: translateY(10px) } to { opacity:1; transform: translateY(0) } }
+
+  /* responsive behaviour */
+  @media (max-width: 1100px) {
+    .viz-card-grid{ grid-template-columns: 1fr; }
+    .viz-card-row{ flex-direction:column }
+    .viz-card--half{ width:100% }
+    .viz-card--full, .viz-card--large{ min-height:220px }
+    .viz-left-stack{ order:0 }
+    .viz-right-main{ order:1 }
+    .viz-card { padding:10px }
+  }
+
+  @media (max-width: 520px){ .viz-card { padding:8px } .stack-item{ min-height:120px } }
