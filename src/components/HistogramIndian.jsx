@@ -39,6 +39,7 @@ export default function HistogramIndian(){
       </div>
 
       <svg ref={svgRef} className="hist-svg" />
+      <div className="hist-tooltip" style={{display:'none'}} />
 
       <div className="hist-legend" aria-hidden />
     </div>
@@ -120,8 +121,26 @@ function drawGroupedBar(svgNode, wrapperNode, { series, years, types }) {
       .attr('height', 0)
       .attr('fill', d => getColorForRaw(d.type))
       .attr('rx', 2)
-      .on('mouseover', function () { d3.select(this).attr('opacity', 0.75) })
-      .on('mouseout', function () { d3.select(this).attr('opacity', 1) })
+      .on('mouseover', function (event, d) {
+        d3.select(this).attr('opacity', 0.75)
+        const tip = d3.select(wrapperNode).select('.hist-tooltip')
+        tip.style('display', 'block')
+        tip.html(`<div class="tip-title">${d.type}</div><div><strong>Année:</strong> ${d.year}</div><div><strong>Valeur:</strong> ${d3.format(',')(d.value)}</div>`)
+        tip.classed('show', true)
+        const [mx, my] = d3.pointer(event, wrapperNode)
+        tip.style('left', `${Math.min(wrapperNode.clientWidth - 220, mx + 14)}px`).style('top', `${Math.max(8, my + 10)}px`)
+      })
+      .on('mousemove', function (event) {
+        const tip = d3.select(wrapperNode).select('.hist-tooltip')
+        const [mx, my] = d3.pointer(event, wrapperNode)
+        tip.style('left', `${Math.min(wrapperNode.clientWidth - 220, mx + 14)}px`).style('top', `${Math.max(8, my + 10)}px`)
+      })
+      .on('mouseout', function () {
+        d3.select(this).attr('opacity', 1)
+        const tip = d3.select(wrapperNode).select('.hist-tooltip')
+        tip.classed('show', false)
+        setTimeout(() => tip.style('display', 'none'), 140)
+      })
 
   bars.transition()
       .duration(600)

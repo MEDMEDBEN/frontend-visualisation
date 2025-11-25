@@ -10,18 +10,37 @@ export default function Navbar({ dark, toggleTheme }){
 
   // map common search keywords to element ids on the Visualisation page
   const targets = {
+    // histograms / charts
     histogram: 'histogram',
     hist: 'histogram',
+    histo: 'histogram',
     line: 'linechart',
+    linechart: 'linechart',
     heatmap: 'heatmap',
+    carte: 'heatmap',
     pie: 'pie-total',
+    'pie-total': 'pie-total',
     recycle: 'pie-recycle',
+    'pie-recycle': 'pie-recycle',
     scatter: 'scatter',
+    'scatter-plot': 'scatter',
     radar: 'radar',
-    sankey: 'sankey',
+    sankey: 'block-sankey',
     gauge: 'gauge',
     bar: 'barcampaigns',
-    campaigns: 'barcampaigns'
+    campaigns: 'barcampaigns',
+
+    // higher level blocks and misc
+    kpi: 'block-kpis',
+    kpis: 'block-kpis',
+    'mini-summary': 'mini-summary',
+    'city-panel': 'city-panel',
+    'cost-boxplot': 'block-cost-boxplot',
+    'boxplot': 'block-cost-boxplot',
+    'map': 'block-map',
+    carte: 'block-map',
+    'top10': 'barcampaigns',
+    'pie': 'pie-total'
   }
 
   // map page keywords to routes so the search can navigate across pages
@@ -38,7 +57,9 @@ export default function Navbar({ dark, toggleTheme }){
     'solution': '/solution',
     'solutions': '/solution',
     'home': '/',
-    'overview': '/'
+    'accueil': '/',
+    'overview': '/',
+    'dashboard': '/'
   }
 
   function doScrollTo(id){
@@ -95,12 +116,12 @@ export default function Navbar({ dark, toggleTheme }){
   return (
     <header className="app-navbar">
       <div className="nav-top">
-        <div className="brand-row">
+        <NavLink to="/" className="brand-row brand-link" aria-label="Accueil">
           <div className="brand-logo" aria-hidden>
             <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="#7FDBB6"/><path d="M7 13c1.5-2 3-3 5-3s3.5 1 5 3" stroke="#042A20" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </div>
           <div className="brand-title">Med and Jess</div>
-        </div>
+        </NavLink>
 
         <form className="nav-search" onSubmit={handleSearchSubmit} role="search" onReset={()=>{ setQuery(''); inputRef.current && inputRef.current.focus() }}>
           <input ref={inputRef} aria-label="Search dashboard" placeholder="Search (ex: heatmap, radar, sankey...)" value={query} onChange={e=>setQuery(e.target.value)} />

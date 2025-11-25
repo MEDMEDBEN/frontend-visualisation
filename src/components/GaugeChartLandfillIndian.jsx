@@ -82,15 +82,18 @@ function drawGauge(svgNode, tooltipNode, stats){
     .attr('transform', `translate(${cx},${cy})`)
     .attr('fill', d=>d.color)
 
-  // ticks
-  const ticks = d3.range(0, 101, 10)
+  // ticks: draw degree-style ticks around the dial to avoid misalignment
+  // generate ticks from 0° to 355° every 5° (last tick at 355°)
+  const degTicks = d3.range(0, 360, 5)
   const tickGroup = svg.append('g')
-  tickGroup.selectAll('line').data(ticks).join('line')
-    .attr('x1', d=> cx + (radius*0.72) * Math.cos(startAngle + (endAngle-startAngle)*(d/100)))
-    .attr('y1', d=> cy + (radius*0.72) * Math.sin(startAngle + (endAngle-startAngle)*(d/100)))
-    .attr('x2', d=> cx + (radius*0.92) * Math.cos(startAngle + (endAngle-startAngle)*(d/100)))
-    .attr('y2', d=> cy + (radius*0.92) * Math.sin(startAngle + (endAngle-startAngle)*(d/100)))
-    .attr('stroke','#fff').attr('stroke-width',1)
+  tickGroup.selectAll('line').data(degTicks).join('line')
+    .attr('x1', deg => cx + (radius*0.72) * Math.cos((deg - 90) * (Math.PI/180)))
+    .attr('y1', deg => cy + (radius*0.72) * Math.sin((deg - 90) * (Math.PI/180)))
+    .attr('x2', deg => cx + ( (deg % 30 === 0) ? (radius*0.98) : (radius*0.9) ) * Math.cos((deg - 90) * (Math.PI/180)))
+    .attr('y2', deg => cy + ( (deg % 30 === 0) ? (radius*0.98) : (radius*0.9) ) * Math.sin((deg - 90) * (Math.PI/180)))
+    .attr('stroke','#fff')
+    .attr('stroke-width', d => (d % 30 === 0 ? 1.4 : 0.9) )
+    .attr('opacity', d => (d % 10 === 0 ? 0.95 : 0.45))
 
   // needle
   const pct = Math.max(0, stats && stats.pct ? stats.pct : 0)

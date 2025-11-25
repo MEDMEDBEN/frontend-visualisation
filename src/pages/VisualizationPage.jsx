@@ -13,6 +13,9 @@ import BarChartCampaignsPaged from '../components/BarChartCampaignsPaged';
 import RadarChartMunicipalIndian from '../components/RadarChartMunicipalIndian';
 import GaugeChartLandfillIndian from '../components/GaugeChartLandfillIndian';
 import SankeyDiagramIndian from '../components/SankeyDiagramIndian';
+import MapIndian from '../components/MapIndian';
+import KpiPanel from '../components/KpiPanel';
+import CostBoxPlot from '../components/CostBoxPlot';
 
 const VisualizationPage = () => {
   function MiniSummary(){
@@ -91,7 +94,16 @@ const VisualizationPage = () => {
               <div id="barcampaigns" className="row full-row">
         <BarChartCampaignsPaged />
       </div>
-        <div className="city-panel"><CityPanel /></div>
+        <div className="city-panel">
+          <CityPanel />
+        </div>
+
+        {/* KPI panel placed under the CityPanel as a horizontal row */}
+        <section id="block-kpis" className="viz-block viz-appear">
+          <div className="kpi-panel-container">
+            <KpiPanel />
+          </div>
+        </section>
 
         {/* Bloc 1 - Histogramme (full width) */}
         <section id="block-histogram" className="viz-block viz-appear">
@@ -155,6 +167,13 @@ const VisualizationPage = () => {
           </div>
         </section>
 
+        {/* Bloc 4b - Cost boxplot (placed under the Radar) */}
+        <section id="block-cost-boxplot" className="viz-block viz-appear">
+          <div className="viz-card viz-card--full">
+            <div className="viz-card-body"><CostBoxPlot /></div>
+          </div>
+        </section>
+
         {/* Sankey (separate full-width row) */}
         <section id="block-sankey" className="viz-block viz-appear">
           <div className="viz-card viz-card--full">
@@ -162,6 +181,11 @@ const VisualizationPage = () => {
             <div className="viz-card-body"><SankeyDiagramIndian /></div>
           </div>
         </section>
+               {/* Bloc 4b - Carte (full width) */}
+        <section id="block-map" className="viz-block viz-appear">
+          <MapIndian />
+        </section>
+
 
       </div>
     </CityProvider>

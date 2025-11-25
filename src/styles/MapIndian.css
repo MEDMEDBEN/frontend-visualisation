@@ -1,0 +1,36 @@
+/* MapIndian styles: glass card + dark wrapper + responsive image */
+
+.map-card .viz-card-header h3 {
+  font-weight: 100;
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.map-glass {
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.map-dark-wrapper {
+  background: #1E1F22;
+  padding: 12px;
+  border-radius: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.map-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ensure the card fits visually with other viz cards */
+.map-card {
+  border-radius: 12px;
+}

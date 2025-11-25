@@ -31,6 +31,9 @@
 .bar-paged-tooltip{ position:absolute; pointer-events:none; background: rgba(6,12,20,0.9); border:1px solid rgba(255,255,255,0.04); padding:8px 10px; border-radius:8px; box-shadow:0 12px 30px rgba(2,8,18,0.56); font-size:13px; color:var(--text-primary); opacity:0; transform:translateY(6px); transition:opacity 160ms ease, transform 160ms ease }
 .bar-paged-tooltip.show{ opacity:1; transform:translateY(0) }
 
+/* Hover label displayed above a bar */
+.bar-hover-label{ font-family: var(--brand-font); font-size:12px; font-weight:700; fill:var(--text-primary); pointer-events:none }
+
 @media (max-width:900px){
   .bar-paged-body{ flex-direction:column }
   .bar-paged-pages{ width:100%; flex-direction:row; overflow:auto }

@@ -7,7 +7,7 @@
   margin: 5px auto;
   width: 800px;
   justify-content: center;
-  height: 250px;
+  height: 275px;
   align-items: center;
 }
 .gauge-card:hover {
@@ -22,7 +22,7 @@
 .gauge-controls label{ display:block; margin-bottom:6px; color:var(--text-muted) }
 .gauge-controls select{ width:100%; padding:8px; border-radius:8px;border:1px solid rgba(255,255,255,0.04); background: rgba(255,255,255,0.03); color:var(--text-primary) }
 .gauge-area{ flex:1 1 420px; min-width:320px; position:relative }
-.gauge-svg{ width:80%; height:auto; display:block;left: -30px; }
+.gauge-svg{ width:90%; height:auto; display:block;left: -30px; }
 .gauge-tooltip{ position:fixed; pointer-events:none; background: rgba(6,12,20,0.9); border:1px solid rgba(255,255,255,0.04); padding:8px 10px; border-radius:8px; box-shadow:0 12px 30px rgba(2,8,18,0.56); font-size:13px; color:var(--text-primary) }
 .needle-line{ transition: transform 900ms cubic-bezier(.22,.9,.27,1) }
 .needle-hub{ fill:#333 }

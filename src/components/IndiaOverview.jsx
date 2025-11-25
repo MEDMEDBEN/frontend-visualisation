@@ -10,6 +10,7 @@ export default function IndiaOverview(){
   const barRef = useRef()
   const scatterRef = useRef()
   const scatterTipRef = useRef()
+  const donutTipRef = useRef()
 
   // compute top10 waste cities
   const topCities = React.useMemo(()=>{
@@ -116,8 +117,8 @@ export default function IndiaOverview(){
               <div className="landfill-icon">🗑️</div>
               <div className="landfill-text">
                 <h3 className="landfill-title">Landfill total — Inde</h3>
-                <div className="landfill-number">87 000 000&nbsp;tonnes de déchets actuellement en décharge en Inde (CPCB 2022)</div>
-                <div className="landfill-meta">Sites actifs : 1 356 décharges (2023) — ≈ 41 000&nbsp;t / jour</div>
+                  <div className="landfill-number">87 000 000 tonnes de déchets actuellement en décharge en Inde (CPCB 2022)</div>
+                  <div className="landfill-meta">Sites actifs : 1 356 décharges (2023) — ≈ 41 000 t / jour</div>
               </div>
             </div>
           </div>
@@ -126,14 +127,20 @@ export default function IndiaOverview(){
         <div className="overview-right">
           <div className="card chart-card area-card"><h4>Evolution annuelle des déchets (Inde)</h4><svg ref={areaRef} className="area-svg" /></div>
           <div className="card small-row">
-            <div className="chart-card donut-card"><h4>Répartition par type</h4><svg ref={donutRef} className="donut-svg" /></div>
+            <div className="chart-card donut-card"><h4>Répartition par type</h4>
+              <div className="donut-wrap">
+                <svg ref={donutRef} className="donut-svg" />
+                <div ref={donutTipRef} className="donut-tooltip" />
+              </div>
+              <div className="donut-legend" />
+            </div>
             <div className="chart-card bar-card"><h4>Top 10 — Villes (bar)</h4><svg ref={barRef} className="bar-svg" /></div>
           </div>
           <div className="card chart-card radar-card">
             <h4>Scores nationaux — Indicateurs</h4>
             <div className="radar-chart-area">
               <svg ref={scatterRef} className="scatter-svg" />
-              <div ref={scatterTipRef} className="scatter-tooltip" style={{display:'none'}} />
+              <div ref={scatterTipRef} className="scatter-tooltip" />
               <div className="scatter-legend" />
             </div>
           </div>
@@ -170,12 +177,50 @@ function drawArea(node, totals){
 function drawDonut(node, items){
   if(!node) return
   const svg = d3.select(node); svg.selectAll('*').remove()
-  const w = 220, h = 220, r = Math.min(w,h)/2 - 6
-  svg.attr('width', w).attr('height', h)
+  // responsive sizing: prefer parent width but cap to 220 for layout stability
+  const parentW = node.parentElement.clientWidth || 220
+  const size = Math.max(120, Math.min(220, parentW))
+  const w = size, h = size, r = Math.min(w,h)/2 - 6
+  svg.attr('width', w).attr('height', h).attr('viewBox', `0 0 ${w} ${h}`)
   const g = svg.append('g').attr('transform', `translate(${w/2},${h/2})`)
   const pie = d3.pie().value(d=>d.val).sort(null)
   const arc = d3.arc().innerRadius(r*0.56).outerRadius(r)
-  g.selectAll('path').data(pie(items)).join('path').attr('d', arc).attr('fill', (d,i)=>`var(--chart-${(i%10)+1})`).style('opacity',0.95)
+  const arcHover = d3.arc().innerRadius(r*0.56).outerRadius(r * 1.06)
+
+  // ensure tooltip element exists (provided via JSX ref)
+  const wrapper = node.parentElement
+  const tip = d3.select(wrapper).select('.donut-tooltip')
+
+  // palette from CSS vars
+  const cssVars = typeof window !== 'undefined' && window.getComputedStyle ? window.getComputedStyle(document.documentElement) : null
+  const palette = []
+  for(let i=1;i<=10;i++){ const v = cssVars ? cssVars.getPropertyValue(`--chart-${i}`) : ''; palette.push((v && v.trim()) || null) }
+
+  const arcs = g.selectAll('path').data(pie(items)).join('path')
+    .attr('d', arc)
+    .attr('fill', (d,i)=> palette[i % palette.length] || `var(--chart-${(i%10)+1})`)
+    .style('opacity', 0.9)
+    .attr('stroke', 'rgba(255,255,255,0.04)')
+    .attr('stroke-width', 1)
+
+  arcs.on('mouseover', function(event,d){
+    d3.select(this).transition().duration(160).attr('d', arcHover(d))
+    const val = d.data.val
+    tip.html(`<div class="tip-title">${d.data.type}</div><div><strong>${d3.format(',')(Math.round(val))}</strong></div>`)
+    tip.classed('show', true)
+    const [mx,my] = d3.pointer(event, wrapper)
+    const left = Math.min(Math.max(8, mx + 12), Math.max(8, wrapper.clientWidth - 160))
+    const top = Math.max(8, my + 6)
+    tip.style('left', `${left}px`).style('top', `${top}px`)
+  }).on('mousemove', function(event){ const [mx,my] = d3.pointer(event, wrapper); const left = Math.min(Math.max(8, mx + 12), Math.max(8, wrapper.clientWidth - 160)); const top = Math.max(8, my + 6); tip.style('left', `${left}px`).style('top', `${top}px`) })
+    .on('mouseout', function(){ d3.select(this).transition().duration(160).attr('d', arc); tip.classed('show', false) })
+
+  // legend: fill the .donut-legend container (sibling inside card)
+  const legendContainer = d3.select(node.parentElement.parentElement).select('.donut-legend')
+  legendContainer.html('')
+  const legendItems = legendContainer.selectAll('.leg').data(items).join('div').attr('class','leg')
+  legendItems.append('span').attr('class','sw').style('background', (d,i)=> palette[i % palette.length] || `var(--chart-${(i%10)+1})`)
+  legendItems.append('span').attr('class','lbl').text(d=> `${d.type} (${d3.format(',')(Math.round(d.val))})`)
 }
 
 function drawBar(node, rows){
@@ -188,8 +233,8 @@ function drawBar(node, rows){
   const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`)
   const x = d3.scaleLinear().domain([0, d3.max(rows, d=>d.total)||1]).range([0, innerW])
   const y = d3.scaleBand().domain(rows.map(d=>d.city)).range([0, innerH]).padding(0.12)
-  g.selectAll('rect').data(rows).join('rect').attr('y', d=>y(d.city)).attr('x',0).attr('height', y.bandwidth()).attr('width', d=>x(d.total)).attr('fill', (d,i)=> i===0? 'var(--chart-1)': 'var(--chart-3)')
-  g.selectAll('.lab').data(rows).join('text').attr('class','lab').attr('x', d=>-8).attr('y', d=> y(d.city)+ y.bandwidth()/2).attr('dy','0.35em').attr('text-anchor','end').text(d=>d.city).attr('fill', 'var(--text-primary)')
+  g.selectAll('rect').data(rows).join('rect').attr('y', r=>y(r.city)).attr('x',0).attr('height', y.bandwidth()).attr('width', r=>x(r.total)).attr('fill', (r,i)=> i===0? 'var(--chart-1)': 'var(--chart-3)')
+  g.selectAll('.lab').data(rows).join('text').attr('class','lab').attr('x', ()=>-8).attr('y', r=> y(r.city)+ y.bandwidth()/2).attr('dy','0.35em').attr('text-anchor','end').text(r=>r.city).attr('fill', 'var(--text-primary)')
 }
 
 function drawScatter(svgNode, tipNode, points){
@@ -232,27 +277,26 @@ function drawScatter(svgNode, tipNode, points){
   g.append('text').attr('x', w/2).attr('y', h + 36).attr('text-anchor','middle').attr('fill','var(--text-muted)').text('Population Density (people/km²)')
   g.append('text').attr('transform','rotate(-90)').attr('x', -h/2).attr('y', -42).attr('text-anchor','middle').attr('fill','var(--text-muted)').text('Total Waste Generated (Tons/Day)')
 
-  // points
+  // points (translucent, responsive radius)
   const pts = g.selectAll('.pt').data(points).join('circle')
     .attr('class','pt')
     .attr('cx', d=> x(d.populationDensity))
     .attr('cy', d=> y(d.totalGenerated))
     .attr('r', d=> Math.max(2, rScale(d.avgCost)))
     .attr('fill', d=> color(d.primaryType))
-    .attr('stroke','#fff').attr('stroke-width',0.8).attr('opacity',0.95)
+    .attr('stroke','#fff').attr('stroke-width',0.8).attr('opacity',0.8)
 
   const tip = d3.select(tipNode)
   pts.on('mouseover', function(event,d){
-    tip.style('display','block')
-    tip.html(`<div class="tip-title">${d.city}</div><div>Type: <strong style="color:${color(d.primaryType)}">${d.primaryType}</strong></div><div>Density: <strong>${Math.round(d.populationDensity)}</strong></div><div>Waste: <strong>${d3.format(',')(Math.round(d.totalGenerated))} t</strong></div><div>Cost: <strong>${d3.format(',')(Math.round(d.avgCost))}</strong></div>`)
+    tip.html(`<div class="tip-title">${d.city}</div><div>Type: <strong style="color:${color(d.primaryType)}">${d.primaryType}</strong></div><div>Population: <strong>${Math.round(d.populationDensity)}</strong></div><div>Waste: <strong>${d3.format(',')(Math.round(d.totalGenerated))} t</strong></div><div>Cost: <strong>${d3.format(',')(Math.round(d.avgCost))}</strong></div>`)
     tip.classed('show', true)
     const [mx,my] = d3.pointer(event, wrapper)
-    const left = Math.min(Math.max(8, mx + 12), Math.max(8, wrapper.clientWidth - 180))
+    const left = Math.min(Math.max(8, mx + 12), Math.max(8, wrapper.clientWidth - 200))
     const top = Math.max(8, my + 6)
     tip.style('left', `${left}px`).style('top', `${top}px`)
     d3.select(this).raise().transition().duration(140).attr('r', Math.min(28, (rScale(d.avgCost)||4) + 4))
-  }).on('mousemove', function(event){ const [mx,my] = d3.pointer(event, wrapper); const left = Math.min(Math.max(8, mx + 12), Math.max(8, wrapper.clientWidth - 180)); const top = Math.max(8, my + 6); tip.style('left', `${left}px`).style('top', `${top}px`) })
-    .on('mouseout', function(event,d){ tip.classed('show', false); setTimeout(()=> tip.style('display','none'), 160); d3.select(this).transition().duration(120).attr('r', Math.max(2, rScale(d.avgCost))) })
+  }).on('mousemove', function(event){ const [mx,my] = d3.pointer(event, wrapper); const left = Math.min(Math.max(8, mx + 12), Math.max(8, wrapper.clientWidth - 200)); const top = Math.max(8, my + 6); tip.style('left', `${left}px`).style('top', `${top}px`) })
+    .on('mouseout', function(event,d){ tip.classed('show', false); d3.select(this).transition().duration(120).attr('r', Math.max(2, rScale(d.avgCost))) })
 
   // simple legend
   const legend = d3.select(wrapper).select('.scatter-legend')

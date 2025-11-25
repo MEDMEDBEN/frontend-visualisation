@@ -1,0 +1,30 @@
+/* KpiCard styles */
+.kpi-card{
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 14px;
+  padding: 14px 18px;
+  min-width: 180px;
+  max-width: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  color: var(--text-color, #111);
+}
+
+.kpi-card--compact{ padding: 12px 14px }
+.kpi-card-top{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.kpi-icon{ width:28px; height:28px; flex: 0 0 28px }
+.kpi-title h4{ margin:0; font-size:13px; font-weight:600 }
+.kpi-value{ margin-top:8px }
+.kpi-value h2{ margin:0; font-size:20px; font-weight:700; line-height:1 }
+
+

@@ -131,7 +131,7 @@
   .viz-card--mini .mini-summary-body{ overflow:auto }
 
   /* sankey full */
-  .viz-card--full .sankey { min-height:260px }
+  .viz-card--full .sankey { min-height:60px }
 
   /* appearance animation */
   .viz-appear { animation: fadeUp .42s ease both }

@@ -1,0 +1,37 @@
+.cost-boxplot-card{
+  background: var(--card-bg);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  padding: 18px;
+  backdrop-filter: var(--card-backdrop);
+  color: var(--text-primary);
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.cost-card-header{
+  display:flex;
+  flex-direction:row;
+  justify-content:flex-start;
+  align-items:center;
+  gap:12px;
+}
+
+.cost-card-header h3{ margin:0; font-size:16px; font-weight:600 }
+.cost-city{ margin-left:8px; font-size:13px; color: var(--text-primary) }
+
+.cost-card-body{ width:100%; }
+.cost-svg{ width:100%; height:320px; display:block }
+
+@media (max-width:720px){
+  .cost-svg{ height:260px }
+}
+
+/* Tooltip for cost boxplot (consistent with other charts) */
+.cost-tooltip{ position:absolute; pointer-events:none; background: rgba(6,12,20,0.9); border:1px solid rgba(255,255,255,0.04); padding:8px 10px; border-radius:8px; box-shadow:0 12px 30px rgba(2,8,18,0.56); font-size:13px; color:var(--text-primary); opacity:0; transform:translateY(6px); transition:opacity 160ms ease, transform 160ms ease; z-index:60; max-width:240px }
+.cost-tooltip.show{ opacity:1; transform:translateY(0) }
+.cost-tooltip .tip-title{ font-weight:600; margin-bottom:6px }

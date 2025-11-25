@@ -34,3 +34,8 @@ color: var(--text-primary);
   .hist-card{ padding:16px; width:96% }
   .legend .legend-item { transform: none }
 }
+
+/* Tooltip styling for histogram (consistent with other charts) */
+.hist-tooltip{ position:absolute; pointer-events:none; z-index:60; background: rgba(6,12,20,0.9); color:#fff; border:1px solid rgba(255,255,255,0.04); padding:8px 10px; border-radius:8px; box-shadow:0 12px 30px rgba(2,8,18,0.56); font-size:13px; opacity:0; transform:translateY(6px); transition:opacity .12s ease, transform .12s ease; max-width:220px }
+.hist-tooltip.show{ opacity:1; transform:translateY(0) }
+.hist-tooltip .tip-title{ font-weight:600; margin-bottom:6px }
