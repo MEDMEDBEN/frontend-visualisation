@@ -72,11 +72,14 @@ function drawBoxplot(svgNode, wrapperNode, series){
 
   // axes
   const xAxisG = g.append('g').attr('transform', `translate(0, ${height})`)
-  xAxisG.call(d3.axisBottom(x).tickFormat(d=>d)).selectAll('text').attr('fill', 'var(--text-color, #111)')
+  xAxisG.call(d3.axisBottom(x).tickFormat(d=>d))
+  xAxisG.selectAll('text').attr('fill', '#fff')
+  xAxisG.selectAll('path, line').attr('stroke', '#fff')
 
   const yAxisG = g.append('g')
   yAxisG.call(d3.axisLeft(y).ticks(6).tickFormat(d3.format('~s')))
-  yAxisG.selectAll('text').attr('fill', 'var(--text-color, #111)')
+  yAxisG.selectAll('text').attr('fill', '#fff')
+  yAxisG.selectAll('path, line').attr('stroke', '#fff')
 
   // draw boxes per year
   const boxWidth = Math.max(12, x.bandwidth() * 0.6)
@@ -192,7 +195,7 @@ function drawBoxplot(svgNode, wrapperNode, series){
   g.append('text')
     .attr('x', 0)
     .attr('y', -12)
-    .attr('fill','var(--text-color, #111)')
+    .attr('fill','#fff')
     .text('Coût de gestion (₹/tonne)')
     .attr('font-size',12)
 }

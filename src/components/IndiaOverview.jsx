@@ -28,7 +28,7 @@ export default function IndiaOverview(){
       return { recycled: total, rate }
     }, d=>d.city)
     .map(([city, v])=>({ city, recycled: v.recycled, rate: v.rate }))
-    .sort((a,b)=>b.rate - a.rate).slice(0,5)
+      .sort((a,b)=>b.rate - a.rate).slice(0,8)
     return byCity
   },[data])
 
